@@ -1,0 +1,44 @@
+[root@ap1vlabldapnode01 mydir]# nslookup github.wdf.sap.corp
+Server:         10.180.24.2
+Address:        10.180.24.2#53
+
+Non-authoritative answer:
+github.wdf.sap.corp     canonical name = github.mo.sap.corp.
+Name:   github.mo.sap.corp
+Address: 10.67.76.20
+
+
+git config --global --unset http.proxy
+
+
+yum install iptables-services
+
+iptables -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
+
+systemctl enable iptables.service
+
+systemctl start iptables.service
+
+systemctl enable firewalld
+
+systemctl start firewalld
+
+sudo netstat -lnp | grep 443
+
+
+
+
+
+
+
+
+firewall-cmd --zone=public --add-port=22/tcp --permanent
+
+firewall-cmd --reload
+
+
+sudo vi .git/config
+
+ssh -vvv git@github.wdf.sap.corp
+
+
